@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="angForm" novalidate>
+  
+        <div class="form-group">
+          <label class="col-md-4">Word1</label>
+          <select class="form-control" formControlName="Word1" #Word1>
+            <option [value]="w.WordID" *ngFor="let w of Words">{{
+              w.WordText
+            }}</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label class="col-md-4">Word2</label>
+          <select class="form-control" formControlName="Word2" #Word2>
+            <option [value]="w.WordID" *ngFor="let w of Words">{{
+              w.WordText
+            }}</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <button
+            (click)="addTranslation(Word1.value, Word2.value)"
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="angForm.pristine || angForm.invalid"
+          >
+            Create Translation
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

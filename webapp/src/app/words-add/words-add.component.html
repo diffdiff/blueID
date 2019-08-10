@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Word Text</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="WordText"
+          #WordText
+        />
+      </div>
+      <div
+        *ngIf="
+          angForm.controls['WordText'].invalid &&
+          (angForm.controls['WordText'].dirty ||
+            angForm.controls['WordText'].touched)
+        "
+        class="alert alert-danger"
+      >
+        <div *ngIf="angForm.controls['WordText'].errors.required">
+          Word is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Language</label>
+        <select class="form-control" formControlName="Language" #Language>
+          <option [value]="lang.LangID" *ngFor="let lang of Langs">{{
+            lang.LangName
+          }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Example</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="Example"
+          #Example
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="Description"
+          #Description
+        />
+      </div>
+
+      <div class="form-group">
+        <button
+          (click)="addWord(WordText.value, Language.value, Example.value, Description.value)"
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="angForm.pristine || angForm.invalid"
+        >
+          Create Word
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

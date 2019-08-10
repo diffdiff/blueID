@@ -1,0 +1,25 @@
+<a class="btn btn-primary" [routerLink]="['/lang/add']">Add Lang</a>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <td>Language Name</td>
+        <td colspan="2">Actions</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of Langs">
+        <td>{{ m.LangName }}</td>
+        <td>
+          <a [routerLink]="['/lang/edit', m.LangID]" class="btn btn-primary"
+            >Edit</a
+          >
+        </td>
+        <td>
+          <a (click)="deleteLang(m.LangID)" class="btn btn-danger"
+            >Delete</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
